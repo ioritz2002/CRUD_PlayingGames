@@ -21,6 +21,10 @@ public class SagaService {
         return sagaRepository.findById(id);
     }
 
+    public Saga findByName(String name) {
+        return sagaRepository.findByName(name);
+    }
+
     public Saga save(Saga saga) {
         return sagaRepository.save(saga);
     }
