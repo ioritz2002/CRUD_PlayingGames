@@ -27,7 +27,7 @@ public class SagaController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<SagaDTO> getSagaById(@PathVariable Long id) {
         Saga saga = sagaService.findById(id).orElse(null);
 
@@ -37,6 +37,16 @@ public class SagaController {
 
         SagaDTO sagaDTO = convertToDto(saga);
 
+        return ResponseEntity.ok(sagaDTO);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<SagaDTO> findByName(@PathVariable String name) {
+        Saga saga = sagaService.findByName(name);
+        if(saga == null) {
+            return ResponseEntity.notFound().build();
+        }
+        SagaDTO sagaDTO = convertToDto(saga);
         return ResponseEntity.ok(sagaDTO);
     }
 
