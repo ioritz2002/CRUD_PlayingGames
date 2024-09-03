@@ -31,4 +31,8 @@ public class GameService {
         gameRepository.deleteById(id);
     }
 
+    public Game findByName(String name){
+        return gameRepository.findByName(name);
+    }
+
 }

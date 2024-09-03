@@ -25,7 +25,7 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<GameDTO> getGameById(@PathVariable Long id) {
         Game game = gameService.findById(id).orElse(null);
 
@@ -35,6 +35,18 @@ public class GameController {
 
         GameDTO gameDTO = convertToDto(game);
 
+        return ResponseEntity.ok(gameDTO);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<GameDTO> findByName(@PathVariable String name) {
+        Game game = gameService.findByName(name);
+
+        if(game == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        GameDTO gameDTO = convertToDto(game);
         return ResponseEntity.ok(gameDTO);
     }
 
