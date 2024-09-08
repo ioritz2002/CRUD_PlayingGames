@@ -65,7 +65,7 @@ public class GameController {
                 game.getId(),
                 game.getName(),
                 game.getState(),
-                game.getSaga().getName()
+                game.getSaga().getName() != null ? game.getSaga().getName() : "No Saga"
         );
     }
 }
